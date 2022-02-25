@@ -1,28 +1,41 @@
 import 'package:flutter/material.dart';
+import './Widgets/drawer.dart';
+import '../screens/first_section.dart';
+import '../screens/second_section.dart';
 
 void main() => runApp(MyApp());
 
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.red,
+        accentColor: Colors.yellow,
       ),
-      home: MyHomePage(),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => MyHomePage(),
+        FirstSection.routeName: (context) => FirstSection(),
+        SecondSection.routeName: (context) => SecondSection(),
+      },
     );
   }
 }
 
 class MyHomePage extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Drawer app'),),
-      body: Text('First page drawer'),
+      appBar: AppBar(title: Text('Drawer app'), centerTitle: true,),
+      drawer: Drawer(
+        child: MainDrawer(),
+      ),
+      body: Center(
+          child: Text('Main page'),
+      ),
     );
   }
 }
